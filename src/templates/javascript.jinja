@@ -1,0 +1,23 @@
+export default class {{ className }} {
+  static Type = "{{ objectDescription }}";
+  static validProperties = {{ validProperties }};
+  static requiredProperties = {{ requiredProperties }};
+  static isPropertyValid(property) {
+    return {{ className }}.requiredProperties.indexOf(property) !== -1;
+  }
+  static arePropertiesValid(properties) {
+    let andReducer = (previous, current) => previous && current;
+    return Object.keys(properties)
+      .map({{ className }}.isPropertyValid)
+      .reduce(andReducer, true);
+  }
+
+  constructor(options = {}) {
+    if (!{{ className }}.arePropertiesValid(options)) {
+      throw new Error('Invalid Properties for {{ className }} instance.');
+    }
+
+    this.Type = {{ className }}.Type;
+    this.Properties = { ...options };
+  }
+}
