@@ -6,5 +6,5 @@ This is very much a work in progress.
 
 ## running
 
-cd src
+cd src  
 python loader.py
